@@ -47,7 +47,7 @@ class Todo < ActiveRecord::Base
     puts to_displayable_list(todos)
     puts "\n\n"
   end
-  # This
+  # This is used to display a todo in string format
   def to_displayable_string
     display_id = format("%02d", "#{id}")
     display_status = completed ? "[X]" : "[ ]"
@@ -55,11 +55,11 @@ class Todo < ActiveRecord::Base
     "#{display_id}. #{display_status} #{todo_text} #{display_date}"
   end
 
-  #
+  # This is used to add a new todo
   def self.add_task(todo)
     self.create!(todo_text: todo[:todo_text], due_date: Date.today + todo[:due_in_days],completed: false)
   end
-
+# This is used to  mark a todo status completed
   def self.mark_as_complete!(todo_id)
     todo = self.find(todo_id)
     if (!todo.completed)
@@ -70,7 +70,9 @@ class Todo < ActiveRecord::Base
     end
     return todo
   end
-
+  
+# This is used to display all todos
+  
   def self.to_displayable_list(todos)
     todos.map { |todo| todo.to_displayable_string }
   end
