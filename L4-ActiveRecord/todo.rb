@@ -34,17 +34,16 @@ class Todo < ActiveRecord::Base
 
     puts "Overdue\n"
     todos = overdue
-    puts to_displayable_list(todos)
+    puts to_displayable_list(overdue)
     puts "\n\n"
 
     puts "Due Today\n"
-    todos = due_today
-    puts to_displayable_list(todos)
+    puts to_displayable_list(due_today)
     puts "\n\n"
 
     puts "Due Later\n"
     todos = due_later
-    puts to_displayable_list(todos)
+    puts to_displayable_list(due_later)
     puts "\n\n"
   end
   # This is used to display a todo in string format
