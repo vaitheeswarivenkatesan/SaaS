@@ -33,7 +33,6 @@ class Todo < ActiveRecord::Base
     puts "My Todo-list\n\n"
 
     puts "Overdue\n"
-    todos = overdue
     puts to_displayable_list(overdue)
     puts "\n\n"
 
@@ -42,10 +41,10 @@ class Todo < ActiveRecord::Base
     puts "\n\n"
 
     puts "Due Later\n"
-    todos = due_later
     puts to_displayable_list(due_later)
     puts "\n\n"
   end
+  
   # This is used to display a todo in string format
   def to_displayable_string
     display_id = format("%02d", "#{id}")
