@@ -44,7 +44,7 @@ class Todo < ActiveRecord::Base
     puts to_displayable_list(due_later)
     puts "\n\n"
   end
-  
+
   # This is used to display a todo in string format
   def to_displayable_string
     display_id = format("%02d", "#{id}")
@@ -59,18 +59,21 @@ class Todo < ActiveRecord::Base
   end
 # This is used to  mark a todo status completed
   def self.mark_as_complete!(todo_id)
-    todo = self.find(todo_id)
-    if (!todo.completed)
-      todo.completed = true
-      todo.save
+    todo = self.find_by_id(todo_id)
+    if(todo.nil?)
+      p "No id found"
+      exit(0)
     else
-      puts "Already marked completed"
+       if (!todo.completed)
+        todo.completed = true
+        todo.save
+       end
+       return todo
     end
-    return todo
   end
-  
+
 # This is used to display all todos
-  
+
   def self.to_displayable_list(todos)
     todos.map { |todo| todo.to_displayable_string }
   end
