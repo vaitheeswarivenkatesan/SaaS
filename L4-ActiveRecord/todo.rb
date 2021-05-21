@@ -18,15 +18,15 @@ class Todo < ActiveRecord::Base
 
   #This returns an array of overdue todos
   def self.overdue
-    all.select { |todo| todo.overdue? }
+    all.where { |todo| todo.overdue? }
   end
   #This returns an array of due_today todos
   def self.due_today
-    all.select { |todo| todo.due_today? }
+    all.where { |todo| todo.due_today? }
   end
   #This returns an array of due_later todos
   def self.due_later
-    all.select { |todo| todo.due_later? }
+    all.where { |todo| todo.due_later? }
   end
   #This prints todos from the database in the given format:
   def self.show_list
@@ -61,7 +61,7 @@ class Todo < ActiveRecord::Base
   def self.mark_as_complete!(todo_id)
     todo = self.find_by_id(todo_id)
     if(todo.nil?)
-      p "No id found"
+      puts "No id found"
       exit(0)
     else
        if (!todo.completed)
