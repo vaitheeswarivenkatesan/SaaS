@@ -1,21 +1,11 @@
 require "active_record"
 
 class Todo < ActiveRecord::Base
-  # To check if due_date is overdue
-  def overdue?
-    due_date < Date.today
-  end
-
   # To check if due_date is due_today
   def due_today?
     due_date == Date.today
   end
-
-  # To check if due_date is due_later
-  def due_later?
-    due_date > Date.today
-  end
-
+ 
   #This returns an array of overdue todos
   def self.overdue
     all.where("due_date < ?", Date.today)
