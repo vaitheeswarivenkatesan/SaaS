@@ -18,15 +18,15 @@ class Todo < ActiveRecord::Base
 
   #This returns an array of overdue todos
   def self.overdue
-    all.where { |todo| todo.overdue? }
+    all.where("due_date < ?", Date.today)
   end
   #This returns an array of due_today todos
   def self.due_today
-    all.where { |todo| todo.due_today? }
+    all.where("due_date = ?", Date.today)
   end
   #This returns an array of due_later todos
   def self.due_later
-    all.where { |todo| todo.due_later? }
+    all.where("due_date > ?", Date.today)
   end
   #This prints todos from the database in the given format:
   def self.show_list
